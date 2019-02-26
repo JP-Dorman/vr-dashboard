@@ -1,0 +1,108 @@
+/*==================== Static Styles ====================*/
+#leftDrawerContainer {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+#leftDrawerContainer .shade {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.25;
+    padding: 0;
+    border: none;
+    transition: opacity 0.3s;
+}
+
+#leftDrawer {
+    position: absolute;
+    height: 100vh;
+    width: 350px;
+    max-width: 85vw;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+    box-shadow: -2px 0 2px rgba(0,0,0,0.25);
+    transition: left 0.3s;
+    overflow: auto;
+}
+
+#leftDrawer #user {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+#leftDrawer #user .user-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #EEEEEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+#leftDrawer #user .user-icon .material-icons {
+    color: #757575;
+}
+
+#leftDrawer #version-number {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #9E9E9E;
+    font-size: 11px;
+}
+
+/*==================== Animation ====================*/
+/*===== Closed Styles =====*/
+#leftDrawerContainer.closed .shade { opacity: 0; }
+
+#leftDrawerContainer.closed #leftDrawer { left: -360px; }
+
+/*===== Open Styles =====*/
+#leftDrawerContainer.open { pointer-events: all; }
+
+#leftDrawerContainer.open .shade { opacity: 0.25; }
+
+#leftDrawerContainer.open #leftDrawer { left: 0; }
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

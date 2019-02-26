@@ -1,0 +1,28 @@
+{
+    "items": [
+        [
+            {"id": "0"},
+            {"name": "Squareboy"},
+            {"geometry": "primitive: box;"},
+            {"material": "color: #00ff00"},
+            {"position": "0 1 -2"},
+            {"scale": "1 1 1"}
+        ],
+        [
+            {"id": "1"},
+            {"name": "Squareboy"},
+            {"geometry": "primitive: box;"},
+            {"material": "color: #00ffff"},
+            {"position": "-2 1 -2"},
+            {"scale": "1 1 1"}
+        ],
+        [
+            {"id": "2"},
+            {"name": "Squareboy"},
+            {"geometry": "primitive: sphere;"},
+            {"material": "color: #ffff00"},
+            {"position": "2 1 -2"},
+            {"scale": "1 1 1"}
+        ]
+    ]
+}

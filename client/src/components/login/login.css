@@ -1,0 +1,104 @@
+#login-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F5F5F5;
+}
+
+.card {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+#login-card {
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    max-width: 500px;
+}
+
+#login-card label span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#login-card label input {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #9E9E9E;
+    padding: 5px;
+    max-width: 300px;
+    display: block;
+}
+
+#login-card .button-container {
+    display: flex;
+}
+
+#login-card .button-container .btn:not(:last-child) {
+    margin-right: 5px;
+}
+
+#login-card .btn {
+    border: none;
+    border-radius: 4px;
+    height: 35px;
+    background: #FAFAFA;
+    color: #2196F3;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+#login-card .btn:hover {
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#login-card .btn.btn-primary {
+    background: #2196F3;
+    color: #fff;
+}
+
+/*========== Log in/out ==========*/
+#login-card.logged-out #log-out {
+    display: none;
+}
+
+#login-card.logged-in label,
+#login-card.logged-in #log-in,
+#login-card.logged-in #sign-up {
+    display: none;
+}
+
+
+/*==================== <768px ====================*/
+@media (min-width: 768px) {
+    #login-card {
+        margin-bottom: 20vh;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**/
