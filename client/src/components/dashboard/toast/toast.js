@@ -12,7 +12,7 @@ class Modal extends React.Component {
 
         return (
             <div id="">
-
+              
             </div>
         );
     };
