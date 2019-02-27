@@ -19,7 +19,7 @@ class ExistingEntities extends React.Component {
 
         return (
             <div className="entity">
-                <button className="entity-button" id={buttonId} onClick={this.props.toggleModal.bind(this, insertName, ["delete"], [this.props.firebaseKey])} ></button>
+                <button className="entity-button" id={buttonId} onClick={this.props.toggleBottomSheet.bind(this, insertName, [{icon:'delete', text:'Delete'}], [this.props.firebaseKey])} ></button>
                 <div className="name"><span>{insertName}</span></div>
                 <div className="shape"><span>{insertShape}</span></div>
                 <div className="colour"><span style={{background: "#" + insertColour}}></span></div>

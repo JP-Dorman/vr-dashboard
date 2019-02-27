@@ -6,6 +6,7 @@ import RightDrawer from './rightDrawer/rightDrawer.js'
 import ExistingEntities from './existingEntities/existingEntities.js'
 import Modal from './modal/modal.js'
 import Snackbar from './snackbar/snackbar.js'
+import BottomSheet from './bottomSheet/bottomSheet.js'
 import * as firebase from 'firebase';
 import {
   BrowserRouter as Router,
@@ -25,6 +26,8 @@ class DashboardPage extends React.Component {
             jsonData: [],
             modalData:["",[],""],
             modalShow: false,
+            bottomSheetShow: false,
+            bottomSheetData:["",[],""],
             firebaseJsonData: [],
             latestEntityKey: 0,
             snackShow: false,
@@ -109,6 +112,17 @@ class DashboardPage extends React.Component {
         });
     }
 
+    toggleBottomSheet = (headerContent, bodyContent, firebaseNodeKey) => {
+      if (this.state.bottomSheetShow === false) {
+        this.setState ({
+          bottomSheetData: [headerContent, bodyContent, firebaseNodeKey]
+        });
+      }
+      this.setState ({
+        bottomSheetShow: !this.state.bottomSheetShow,
+      });
+    }
+
     toggleSnackbar = (snackMessage, snackActionText, snackActionFunction) => {
       if (this.state.snackShow === false) {
         this.setState ({
@@ -150,7 +164,7 @@ class DashboardPage extends React.Component {
                             key={index}
                             {...obj}
                             buttonNumber={index}
-                            toggleModal={this.toggleModal}
+                            toggleBottomSheet={this.toggleBottomSheet}
                             />
                         );
                     })}
@@ -187,6 +201,15 @@ class DashboardPage extends React.Component {
                     snackMessage={this.state.snackMessage}
                     snackActionText={this.state.snackActionText}
                     snackActionFunction={this.snackActionFunction}
+                    toggleSnackbar={this.toggleSnackbar}
+                />
+
+                <BottomSheet
+                    jsonData={this.state.jsonData}
+                    bottomSheetShow={this.state.bottomSheetShow}
+                    bottomSheetData={this.state.bottomSheetData}
+                    toggleBottomSheet={this.toggleBottomSheet}
+                    userId={this.props.userId}
                     toggleSnackbar={this.toggleSnackbar}
                 />
             </div>
