@@ -24,7 +24,7 @@ button.entity-button {
 }
 
 button.entity-button:hover {
-    opacity: 0.1;
+    opacity: 0.05;
 }
 
 /*==================== Row Content ====================*/
