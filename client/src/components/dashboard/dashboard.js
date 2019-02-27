@@ -5,6 +5,7 @@ import LeftDrawer from './leftDrawer/leftDrawer.js'
 import RightDrawer from './rightDrawer/rightDrawer.js'
 import ExistingEntities from './existingEntities/existingEntities.js'
 import Modal from './modal/modal.js'
+import Snackbar from './snackbar/snackbar.js'
 import * as firebase from 'firebase';
 import {
   BrowserRouter as Router,
@@ -26,6 +27,10 @@ class DashboardPage extends React.Component {
             modalShow: false,
             firebaseJsonData: [],
             latestEntityKey: 0,
+            snackShow: false,
+            snackMessage: '',
+            snackActionText: '',
+            snackActionFunction: null,
         };
     }
 
@@ -104,6 +109,25 @@ class DashboardPage extends React.Component {
         });
     }
 
+    toggleSnackbar = (snackMessage, snackActionText, snackActionFunction) => {
+      if (this.state.snackShow === false) {
+        this.setState ({
+          snackMessage: snackMessage,
+          snackActionText: snackActionText,
+          snackActionFunction: snackActionFunction
+        });
+
+        // Set timeout for snackbar
+        setTimeout(() => {
+          if(this.state.snackShow === true) {
+            this.toggleSnackbar();
+          }
+        }, 3500);
+      }
+
+      this.setState ({ snackShow: !this.state.snackShow });
+    }
+
     /*==================== Page ====================*/
     render() {
         return (
@@ -146,6 +170,7 @@ class DashboardPage extends React.Component {
                     jsonData={this.state.jsonData}
                     userId={this.props.userId}
                     latestEntityKey={this.state.latestEntityKey}
+                    toggleSnackbar={this.toggleSnackbar}
                 />
 
                 <Modal
@@ -154,6 +179,15 @@ class DashboardPage extends React.Component {
                     modalData={this.state.modalData}
                     toggleModal={this.toggleModal}
                     userId={this.props.userId}
+                    toggleSnackbar={this.toggleSnackbar}
+                />
+
+                <Snackbar
+                    snackShow={this.state.snackShow}
+                    snackMessage={this.state.snackMessage}
+                    snackActionText={this.state.snackActionText}
+                    snackActionFunction={this.snackActionFunction}
+                    toggleSnackbar={this.toggleSnackbar}
                 />
             </div>
         );

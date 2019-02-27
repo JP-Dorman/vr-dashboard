@@ -1,0 +1,68 @@
+#snackWindow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 21;
+}
+
+#snack {
+  background: #323232;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 0 20px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: all;
+  margin-bottom: -160px;
+  width: 100%;
+  opacity: 0;
+  transition: margin-bottom 0.5s ease, opacity 0.15s linear;
+}
+
+#snack.show {
+  opacity: 1;
+  margin-bottom: 100px;
+  transition: margin-bottom 0.4s ease, opacity 0.5s linear;
+}
+
+#snackMessage {
+  /* Adding padding to text allows consistent spacing with buttons */
+  padding: 10px;
+  margin-right: 30px;
+  cursor: default;
+}
+
+#snackAction {
+  padding: 10px;
+  color: #2196f3;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#snackAction:hover {
+  background-color: #424242;
+}
+
+
+/*==================== >= 768px ====================*/
+@media (min-width: 768px) {
+
+  #snack {
+    width: auto;
+    max-width: 500px;
+  }
+
+  #snack.show {
+    margin-bottom: 50px;
+  }
+}
