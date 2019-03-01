@@ -39,7 +39,7 @@ class DashboardPage extends React.Component {
 
     /*==================== Doc Ready ====================*/
     componentDidMount = () => {
-        this.firebaseGetData();
+      this.firebaseGetData();
     }
 
     componentDidUpdate = () => { /*...*/ }
