@@ -37,7 +37,7 @@ class BottomSheet extends React.Component {
               return (
                 <li key={index}>
                   <button onClick={this.handleDelete}>
-                    <i class="material-icons bottomSheetItemIcon">
+                    <i className="material-icons bottomSheetItemIcon">
                       {content.icon}
                     </i>
                     <span className="bottomSheetItemText">

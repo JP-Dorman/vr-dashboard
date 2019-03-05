@@ -90,26 +90,26 @@ class DashboardPage extends React.Component {
     }
 
     toggleRightDrawer = () => {
-        if (this.state.rightDrawerOpen === true) {
-            this.setState({ rightDrawerOpen: false });
-        } else {
-            this.setState({ rightDrawerOpen: true });
-        }
+      if (this.state.rightDrawerOpen === true) {
+        this.setState({ rightDrawerOpen: false });
+      } else {
+        this.setState({ rightDrawerOpen: true });
+      }
     }
 
     toggleLeftDrawer = () => {
-        if (this.state.leftDrawerOpen === true) {
-            this.setState({ leftDrawerOpen: false });
-        } else {
-            this.setState({ leftDrawerOpen: true });
-        }
+      if (this.state.leftDrawerOpen === true) {
+        this.setState({ leftDrawerOpen: false });
+      } else {
+        this.setState({ leftDrawerOpen: true });
+      }
     }
 
     toggleModal = (headerContent, bodyContent, firebaseNodeKey) => {
-        this.setState ({
-            modalShow: !this.state.modalShow,
-            modalData: [headerContent, bodyContent, firebaseNodeKey]
-        });
+      this.setState ({
+        modalShow: !this.state.modalShow,
+        modalData: [headerContent, bodyContent, firebaseNodeKey]
+      });
     }
 
     toggleBottomSheet = (headerContent, bodyContent, firebaseNodeKey) => {
@@ -145,75 +145,75 @@ class DashboardPage extends React.Component {
     /*==================== Page ====================*/
     render() {
         return (
-            <div id="dashboard-page">
-                <div id="header-bar">
-                    <div id="header-bar-left">
-                        <button onClick={this.toggleLeftDrawer}><i className="material-icons">menu</i></button>
-                        <h1>Edit Scene</h1>
-                    </div>
+          <div id="dashboard-page">
+            <div id="header-bar">
+              <div id="header-bar-left">
+                <button onClick={this.toggleLeftDrawer}><i className="material-icons">menu</i></button>
+                <h1>Edit Scene</h1>
+              </div>
 
-                    <div id="header-bar-right">
-                        <Link to={'/scene'} className="btn btn-negative">View Scene</Link>
-                    </div>
-                </div>
-
-                <div id="entities">
-                    {this.state.firebaseJsonData.map((obj, index) => {
-                        return (
-                            <ExistingEntities
-                            key={index}
-                            {...obj}
-                            buttonNumber={index}
-                            toggleBottomSheet={this.toggleBottomSheet}
-                            />
-                        );
-                    })}
-                </div>
-
-                <button id="fab" onClick={this.toggleRightDrawer}>
-                  <i className="material-icons">add</i>
-                </button>
-
-                <LeftDrawer open={this.state.leftDrawerOpen}
-                    toggleLeftDrawer={this.toggleLeftDrawer}
-                />
-
-                <RightDrawer open={this.state.rightDrawerOpen}
-                    toggleRightDrawer={this.toggleRightDrawer}
-                    axiosGet={this.getJson}
-                    jsonData={this.state.jsonData}
-                    userId={this.props.userId}
-                    latestEntityKey={this.state.latestEntityKey}
-                    toggleSnackbar={this.toggleSnackbar}
-                />
-
-                <Modal
-                    jsonData={this.state.jsonData}
-                    modalShow={this.state.modalShow}
-                    modalData={this.state.modalData}
-                    toggleModal={this.toggleModal}
-                    userId={this.props.userId}
-                    toggleSnackbar={this.toggleSnackbar}
-                />
-
-                <Snackbar
-                    snackShow={this.state.snackShow}
-                    snackMessage={this.state.snackMessage}
-                    snackActionText={this.state.snackActionText}
-                    snackActionFunction={this.snackActionFunction}
-                    toggleSnackbar={this.toggleSnackbar}
-                />
-
-                <BottomSheet
-                    jsonData={this.state.jsonData}
-                    bottomSheetShow={this.state.bottomSheetShow}
-                    bottomSheetData={this.state.bottomSheetData}
-                    toggleBottomSheet={this.toggleBottomSheet}
-                    userId={this.props.userId}
-                    toggleSnackbar={this.toggleSnackbar}
-                />
+              <div id="header-bar-right">
+                <Link to={'/scene'} className="btn btn-negative">View Scene</Link>
+              </div>
             </div>
-        );
+
+              <div id="entities">
+                {this.state.firebaseJsonData.map((obj, index) => {
+                  return (
+                    <ExistingEntities
+                      key={index}
+                      {...obj}
+                      buttonNumber={index}
+                      toggleBottomSheet={this.toggleBottomSheet}
+                    />
+                  );
+                })}
+              </div>
+
+              <button id="fab" onClick={this.toggleRightDrawer}>
+                <i className="material-icons">add</i>
+              </button>
+
+              <LeftDrawer open={this.state.leftDrawerOpen}
+                toggleLeftDrawer={this.toggleLeftDrawer}
+              />
+
+              <RightDrawer open={this.state.rightDrawerOpen}
+                toggleRightDrawer={this.toggleRightDrawer}
+                axiosGet={this.getJson}
+                jsonData={this.state.jsonData}
+                userId={this.props.userId}
+                latestEntityKey={this.state.latestEntityKey}
+                toggleSnackbar={this.toggleSnackbar}
+              />
+
+              <Modal
+                jsonData={this.state.jsonData}
+                modalShow={this.state.modalShow}
+                modalData={this.state.modalData}
+                toggleModal={this.toggleModal}
+                userId={this.props.userId}
+                toggleSnackbar={this.toggleSnackbar}
+              />
+
+              <Snackbar
+                snackShow={this.state.snackShow}
+                snackMessage={this.state.snackMessage}
+                snackActionText={this.state.snackActionText}
+                snackActionFunction={this.snackActionFunction}
+                toggleSnackbar={this.toggleSnackbar}
+              />
+
+              <BottomSheet
+                jsonData={this.state.jsonData}
+                bottomSheetShow={this.state.bottomSheetShow}
+                bottomSheetData={this.state.bottomSheetData}
+                toggleBottomSheet={this.toggleBottomSheet}
+                userId={this.props.userId}
+                toggleSnackbar={this.toggleSnackbar}
+              />
+          </div>
+      );
     };
 }
 
