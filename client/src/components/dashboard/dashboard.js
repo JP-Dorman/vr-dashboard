@@ -30,7 +30,7 @@ class DashboardPage extends React.Component {
             bottomSheetData:["",[],""],
             firebaseJsonData: [],
             latestEntityKey: 0,
-            snackShow: false,
+            snackShow: '',
             snackMessage: '',
             snackActionText: '',
             snackActionFunction: null,
@@ -124,7 +124,7 @@ class DashboardPage extends React.Component {
     }
 
     toggleSnackbar = (snackMessage, snackActionText, snackActionFunction) => {
-      if (this.state.snackShow === false) {
+      if (this.state.snackShow === '' || this.state.snackShow === 'hide') {
         this.setState ({
           snackMessage: snackMessage,
           snackActionText: snackActionText,
@@ -133,13 +133,15 @@ class DashboardPage extends React.Component {
 
         // Set timeout for snackbar
         setTimeout(() => {
-          if(this.state.snackShow === true) {
+          if(this.state.snackShow === 'show') {
             this.toggleSnackbar();
           }
         }, 3500);
-      }
 
-      this.setState ({ snackShow: !this.state.snackShow });
+        this.setState ({ snackShow: 'show' });
+      } else {
+        this.setState ({ snackShow: 'hide' });
+      }
     }
 
     /*==================== Page ====================*/

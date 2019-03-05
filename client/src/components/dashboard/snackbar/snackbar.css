@@ -27,13 +27,17 @@
   transform: translate(0, 100vh);
   -ms-transform: translate(0, 100vh); /* IE 9 */
   -webkit-transform: translate(0, 100vh); /* Safari */
-  animation: fade-out-down 0.4s forwards;
-  animation-fill-mode: forwards; /* for less modern browsers */
 }
 
 /* Transition in */
 #snack.show {
   animation: fade-in-up 0.4s forwards;
+  animation-fill-mode: forwards; /* for less modern browsers */
+}
+
+/* Transition out */
+#snack.hide {
+  animation: fade-out-down 0.4s forwards;
   animation-fill-mode: forwards; /* for less modern browsers */
 }
 
@@ -62,9 +66,9 @@
 @keyframes fade-in-up {
   0% {
     opacity: 0;
-    transform: translate(0, -50px);
-    -ms-transform: translate(0, -50px); /* IE 9 */
-    -webkit-transform: translate(0, -50px); /* Safari */
+    transform: translate(0, -60px);
+    -ms-transform: translate(0, -60px); /* IE 9 */
+    -webkit-transform: translate(0, -60px); /* Safari */
   }
 
   100% {
@@ -85,9 +89,9 @@
 
   99% {
     opacity: 0;
-    transform: translate(0, -50px);
-    -ms-transform: translate(0, -50px); /* IE 9 */
-    -webkit-transform: translate(0, -50px); /* Safari */
+    transform: translate(0, -60px);
+    -ms-transform: translate(0, -60px); /* IE 9 */
+    -webkit-transform: translate(0, -60px); /* Safari */
   }
 
   100% {

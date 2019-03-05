@@ -12,11 +12,10 @@ class Snackbar extends React.Component {
 
   /*==================== Content ====================*/
   render() {
-    const showClass = this.props.snackShow === true ? "show" : "";
 
     return (
       <div id="snackWindow">
-        <div id="snack" className={showClass}>
+        <div id="snack" className={this.props.snackShow}>
           <div id="snackMessage">{this.props.snackMessage}</div>
           <button id="snackAction" onClick={this.handleAction}>
             {this.props.snackActionText}
