@@ -1,0 +1,218 @@
+#animationWindow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  overflow: hidden;
+  z-index: 21;
+}
+
+#ball {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #E53935;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(0, 300px);
+  -ms-transform: translate(0, 300px); /* IE 9 */
+  -webkit-transform: translate(0, 300px); /* Safari */
+}
+
+#animationWindow:hover #ball {
+  animation: throw-ball 5s forwards;
+  animation-fill-mode: forwards; /* for less modern browsers */
+  animation-timing-function: linear;
+}
+
+#line {
+  background-color: #C62828;
+  width: 100%;
+  height: 2px;
+  transform: rotate(-20deg);
+}
+
+/*==================== Animations ====================*/
+@keyframes throw-ball {
+  /* Thrown */
+  0% {
+    transform: translate(0, 300px) rotate(-20deg);
+    /* IE 9 */
+    -ms-transform: translate(0, 300px) rotate(-20deg);
+    /* Safari */
+    -webkit-transform: translate(0, 300px) rotate(-20deg);
+  }
+
+  /* Slowing a little near top */
+  4% {
+    transform:
+      translate(calc((50vw - 100px) / 2), 150px)
+      rotate(-50deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(calc((50vw - 100px) / 2), 150px) rotate(-50deg);
+    /* Safari */
+    -webkit-transform: translate(calc((50vw - 100px) / 2), 150px), 150px) rotate(-50deg);
+  }
+
+  /* Bounce top */
+  10% {
+    transform:
+      translate(calc(50vw - 100px), 0)
+      rotate(-80deg)
+    ;
+    -ms-transform: translate(calc(50vw - 100px), 0) rotate(-80deg); /* IE 9 */
+    -webkit-transform: translate(calc(50vw - 100px), 0) rotate(-80deg); /* Safari */
+  }
+
+  /* Bounce right */
+  20% {
+    transform:
+      translate(calc(100vw - 100px), 300px)
+      rotate(-200deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(calc(100vw - 100px), 300px) rotate(-200deg));
+    /* Safari */
+    -webkit-transform: translate(calc(100vw - 100px), 300px) rotate(-200deg));
+  }
+
+  /* Bounce floor 1 */
+  30% {
+    transform:
+      translate(60vw, calc(100vh - 100px))
+      rotate(-310deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(calc(100vw - 100px), 300px) rotate(-310deg));
+    /* Safari */
+    -webkit-transform: translate(calc(100vw - 100px), 300px) rotate(-310deg));
+  }
+
+  /* Rebound floor 1 */
+  40% {
+    transform:
+      translate(45vw, 70vh)
+      rotate(-390deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(45vw, 70vh) rotate(-390deg));
+    /* Safari */
+    -webkit-transform: translate(45vw, 70vh) rotate(-390deg));
+  }
+
+  /* Bounce floor 2 */
+  50% {
+    transform:
+      translate(30vw, calc(100vh - 100px))
+      rotate(-450deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(30vw, calc(100vh - 100px)) rotate(-450deg));
+    /* Safari */
+    -webkit-transform: translate(30vw, calc(100vh - 100px)) rotate(-450deg));
+  }
+
+  /* Rebound floor 2 */
+  58% {
+    transform:
+      translate(20vw, 80vh)
+      rotate(-520deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(20vw, 80vh) rotate(-520deg));
+    /* Safari */
+    -webkit-transform: translate(20vw, 80vh) rotate(-520deg));
+  }
+
+  /* Bounce floor 3 */
+  65% {
+    transform:
+      translate(10vw, calc(100vh - 100px))
+      rotate(-600deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(10vw, calc(100vh - 100px)) rotate(-600deg));
+    /* Safari */
+    -webkit-transform: translate(10vw, calc(100vh - 100px)) rotate(-600deg));
+  }
+
+  /* Rebound floor 3 */
+  70% {
+    transform:
+      translate(5vw, calc(97vh - 100px))
+      rotate(-670deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(5vw, calc(97vh - 100px)) rotate(-670deg));
+    /* Safari */
+    -webkit-transform: translate(5vw, calc(97vh - 100px)) rotate(-670deg));
+  }
+
+  /* Settle and roll 1 */
+  75% {
+    transform:
+      translate(3vw, calc(100vh - 105px))
+      rotate(-720deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(3vw, calc(100vh - 105px)) rotate(-720deg));
+    /* Safari */
+    -webkit-transform: translate(3vw, calc(100vh - 105px)) rotate(-720deg));
+  }
+
+  /* Settle and roll 2 */
+  80% {
+    transform:
+      translate(2vw, calc(100vh - 100px))
+      rotate(-790deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(2vw, calc(100vh - 100px)) rotate(-790deg));
+    /* Safari */
+    -webkit-transform: translate(2vw, calc(100vh - 100px)) rotate(-790deg));
+  }
+
+  /* Settle and roll 2 */
+  85% {
+    transform:
+      translate(1vw, calc(100vh - 100px))
+      rotate(-820deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(1vw, calc(100vh - 100px)) rotate(-820deg));
+    /* Safari */
+    -webkit-transform: translate(1vw, calc(100vh - 100px)) rotate(-820deg));
+  }
+
+  /* Settle and roll 2 */
+  90% {
+    transform:
+      translate(0.8vw, calc(100vh - 100px))
+      rotate(-840deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(0.8vw, calc(100vh - 100px))
+    rotate(-840deg);
+    /* Safari */
+    -webkit-transform: translate(0.8vw, calc(100vh - 100px))
+    rotate(-840deg);
+  }
+
+  /* Settle and roll 2 */
+  100% {
+    transform:
+      translate(0.5vw, calc(100vh - 100px))
+      rotate(-850deg)
+    ;
+    /* IE 9 */
+    -ms-transform: translate(0.5vw, calc(100vh - 100px))
+    rotate(-850deg);
+    /* Safari */
+    -webkit-transform: translate(0.5vw, calc(100vh - 100px))
+    rotate(-850deg);
+  }
+}

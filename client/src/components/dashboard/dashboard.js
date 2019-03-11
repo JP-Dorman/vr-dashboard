@@ -7,6 +7,7 @@ import ExistingEntities from './existingEntities/existingEntities.js'
 import Modal from './modal/modal.js'
 import Snackbar from './snackbar/snackbar.js'
 import BottomSheet from './bottomSheet/bottomSheet.js'
+import AnimationTest from './animationTest/animationTest.js'
 import * as firebase from 'firebase';
 import {
   BrowserRouter as Router,
@@ -214,6 +215,8 @@ class DashboardPage extends React.Component {
                 userId={this.props.userId}
                 toggleSnackbar={this.toggleSnackbar}
               />
+
+              <AnimationTest />
           </div>
       );
     };

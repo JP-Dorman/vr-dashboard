@@ -1,0 +1,498 @@
+#animationWindow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 21;
+  display: none;
+}
+
+/*==================== Resting Position ====================*/
+#skew-voltorb {
+  animation: wiggle-back-forth 12s infinite;
+}
+
+#voltorb {
+  transform: translate(-30px, 0) rotate(-20deg);
+  position: relative;
+  animation: rock-back-forth 12s infinite;
+  animation-fill-mode: infinite; /* for less modern browsers */
+  animation-timing-function: linear;
+}
+
+#volt-body-top {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
+#volt-body-top-fill {
+  width: 300px;
+  height: 300px;
+  background-color: #e08c87;
+  border-radius: 50%;
+  transform: translate(0, 50%);
+  border: 2px solid #3f4146;
+}
+
+#volt-body-bottom {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
+#volt-body-bottom-fill {
+  width: 300px;
+  height: 300px;
+  background-color: #e1e4e6;
+  border-radius: 50%;
+  transform: translate(0, -50%);
+  border: 2px solid #3f4146;
+}
+
+#volt-body-middle {
+  position: absolute;
+  top: 240px;
+  left: -23px;
+  z-index: 1;
+  width: 346px;
+  height: 100px;
+}
+
+#volt-body-middle-line {
+  width: 100%;
+  height: 100%;
+  border:solid 2px #000;
+  border-color: transparent transparent #000 transparent;
+  border-radius:  0 0 50% 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+#volt-body-middle-fill {
+  width: 296px;
+  height: 68px;
+  background: #e08c87;
+  position: absolute;
+  top: 56px;
+  left: 23px;
+}
+
+#volt-face {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: calc(50% - 150px);
+  left: 0;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+#volt-eye-right {
+  width: 120px;
+  height: 80px;
+  position: absolute;
+  transform: translate(75px, 85px) rotate(-7deg);
+  animation: move-eye-right 12s infinite;
+  animation-fill-mode: infinite; /* for less modern browsers */
+  animation-timing-function: linear;
+}
+
+#volt-eye-right-inner-1 {
+  background-color: #fff;
+  width: 47px;
+  height: 27px;
+  position: absolute;
+  top: 35px;
+  left: 15px;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  border-radius: 10px 0px 0px 13px;
+}
+
+#volt-eye-right-inner-2 {
+  background-color: #fff;
+  width: 95px;
+  height: 27px;
+  position: absolute;
+  top: 23px;
+  left: 17px;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  border-radius: 50% 0px 0px 13px;
+}
+
+#volt-eye-right-inner-3 {
+  background-color: #fff;
+  width: 95px;
+  height: 30px;
+  position: absolute;
+  top: 39px;
+  left: 17px;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(4deg);
+  border-radius: 50% 10% 12% 37%;
+}
+
+#volt-eye-right-pupil {
+  width: 5px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+  top: 26px;
+  left: 48px;
+  background-color: #000;
+}
+
+#volt-eye-right-border-top {
+  width: 141px;
+  height: 50px;
+  border: solid 3px #000;
+      border-top-color: rgb(0, 0, 0);
+      border-right-color: rgb(0, 0, 0);
+      border-bottom-color: rgb(0, 0, 0);
+      border-left-color: rgb(0, 0, 0);
+  border-color: #000 transparent transparent transparent;
+  border-radius: 15% 100% 0px 0px;
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(-23deg);
+  position: absolute;
+  top: 14px;
+  left: 8px;
+}
+
+#volt-eye-right-border-right {
+  width: 62px;
+  height: 50px;
+  border: solid 3px #000;
+      border-top-color: rgb(0, 0, 0);
+      border-right-color: rgb(0, 0, 0);
+      border-bottom-color: rgb(0, 0, 0);
+      border-left-color: rgb(0, 0, 0);
+  border-top-color: rgb(0, 0, 0);
+  border-right-color: rgb(0, 0, 0);
+  border-bottom-color: rgb(0, 0, 0);
+  border-left-color: rgb(0, 0, 0);
+  border-color: #000 transparent transparent transparent;
+  border-radius: 3% 31% 0px 0px;
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(87deg);
+  position: absolute;
+  top: 21px;
+  left: 58px;
+}
+
+#volt-eye-right-border-bottom {
+  width: 108px;
+  height: 50px;
+  border: solid 3px #000;
+      border-top-color: rgb(0, 0, 0);
+      border-right-color: rgb(0, 0, 0);
+      border-bottom-color: rgb(0, 0, 0);
+      border-left-color: rgb(0, 0, 0);
+  border-top-color: rgb(0, 0, 0);
+  border-right-color: rgb(0, 0, 0);
+  border-bottom-color: rgb(0, 0, 0);
+  border-left-color: rgb(0, 0, 0);
+  border-color: #000 transparent transparent transparent;
+  border-radius: 30% 11% 0px 0px;
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(188deg);
+  position: absolute;
+  top: 20px;
+  left: 12px;
+}
+
+#volt-eye-left {
+  animation: move-eye-left 12s infinite;
+  animation-fill-mode: infinite; /* for less modern browsers */
+  animation-timing-function: linear;
+  position: absolute;
+  width: 80px;
+  height: 50px;
+  transform: translate(6px, 96px) rotate(10deg);
+}
+
+#volt-eye-left-border-top {
+  width: 77px;
+  height: 32px;
+  border: solid 3px #000;
+  border-color: #000 transparent transparent transparent;
+  border-radius: 7% 53% 0px 0px;
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(208deg);
+  position: absolute;
+  top: -8px;
+  left: -2px;
+}
+
+#volt-eye-left-border-left {
+  width: 71px;
+  height: 109px;
+  border: solid 3px #000;
+  border-color: #000 transparent transparent transparent;
+  border-radius: 206% 174% 0px 0px;
+  -webkit-transform: rotate(247deg);
+  transform: rotate(247deg);
+  position: absolute;
+  top: -45px;
+  left: 20px;
+}
+
+#volt-eye-left-border-bottom-1 {
+  width: 13px;
+  height: 11px;
+  border: solid 2px #000;
+  border-color: #000 transparent transparent transparent;
+  border-radius: 37% 13% 0px 0px;
+  -webkit-transform: rotate(-15deg);
+  transform: rotate(190deg);
+  position: absolute;
+  top: 35px;
+  left: 26px;
+}
+
+#volt-eye-left-border-bottom-2 {
+  width: 23px;
+  height: 6px;
+  border: solid 1px #000;
+  border-color: #000 transparent transparent transparent;
+  border-radius: 144% 174% 0px 0px;
+  -webkit-transform: rotate(167deg);
+  transform: rotate(167deg);
+  position: absolute;
+  top: 39px;
+  left: 33px;
+}
+
+#volt-eye-left-inner-1 {
+  background-color: #fff;
+  width: 47px;
+  height: 13px;
+  position: absolute;
+  top: 22px;
+  left: 10px;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-157deg);
+  border-radius: 39% 0 50% 52%;
+}
+
+#volt-eye-left-inner-2 {
+  background-color: #fff;
+  width: 40px;
+  height: 18px;
+  position: absolute;
+  top: 26px;
+  left: 13px;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-165deg);
+  border-radius: 108% 34% 50% 113%;
+}
+
+#volt-eye-left-inner-3 {
+  background-color: #fff;
+  width: 36px;
+  height: 19px;
+  position: absolute;
+  top: 16px;
+  left: -1px;
+  -webkit-transform: rotate(-10deg);
+  transform: rotate(-130deg);
+  border-radius: 100% 124% 62% 92%;
+}
+
+#volt-eye-left-pupil {
+  width: 4px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  background-color: #000;
+  -webkit-transform: rotate(-4deg);
+  transform: rotate(-18deg);
+}
+
+
+
+/*==================== Animations ====================*/
+@keyframes rock-back-forth {
+  /* Rocking */
+  0% { transform: translate(-30px, 0) rotate(-20deg); }
+  6% { transform: translate(0, -10px) rotate(-8deg); }
+  10% { transform: translate(-30px, 0) rotate(-20deg); }
+  16% { transform: translate(0, -10px) rotate(-8deg); }
+  20% { transform: translate(-30px, 0) rotate(-20deg); }
+  26% { transform: translate(0, -10px) rotate(-8deg); }
+  30% { transform: translate(-30px, 0) rotate(-20deg); }
+  36% { transform: translate(0, -10px) rotate(-8deg); }
+  40% { transform: translate(-30px, 0) rotate(-20deg); }
+  46% { transform: translate(0, -10px) rotate(-8deg); }
+  50% { transform: translate(-30px, 0) rotate(-20deg); }
+  56% { transform: translate(0, -10px) rotate(-8deg); }
+  /* Crouch */
+  58% { transform: translate(-30px, 40px) rotate(-20deg); }
+  /* Jump */
+  59% { transform: translate(20px, -100px) rotate(10deg); }
+  59.3% { transform: translate(20px, -150px) rotate(10deg); }
+  59.5% { transform: translate(20px, -180px) rotate(10deg); }
+  61% { transform: translate(20px, -200px) rotate(8deg); }
+  62% { transform: translate(20px, -180px) rotate(8deg); }
+  63% { transform: translate(20px, -140px) rotate(8deg); }
+  /* Land */
+  64% { transform: translate(0, 0) rotate(-8deg); }
+  64.5% { transform: translate(0, 10px) rotate(-10deg); }
+  64.7% { transform: translate(0, 10px) rotate(-8deg); }
+  /* Rage */
+  65.6% { transform: translate(0, 40px) rotate(-14deg); }
+  65.8% { transform: translate(0, 40px) rotate(-11deg); }
+  66% { transform: translate(0, 40px) rotate(-17deg); }
+  66.2% { transform: translate(0, 40px) rotate(-14deg); }
+  66.6% { transform: translate(0, 40px) rotate(-20deg); }
+  66.8% { transform: translate(0, 40px) rotate(-17deg); }
+  67% { transform: translate(0, 40px) rotate(-22deg); }
+  67.2% { transform: translate(0, 40px) rotate(-19deg); }
+  67.6% { transform: translate(0, 40px) rotate(-25deg); }
+  67.8% { transform: translate(0, 40px) rotate(-22deg); }
+  68% { transform: translate(0, 40px) rotate(-28deg); }
+  68.2% { transform: translate(0, 40px) rotate(-25deg); }
+  68.6% { transform: translate(0, 40px) rotate(-31deg); }
+  68.8% { transform: translate(0, 40px) rotate(-28deg); }
+  /* Rocking */
+  70% { transform: translate(0px, 0) rotate(-20deg); }
+  76% { transform: translate(0, -10px) rotate(-8deg); }
+  80% { transform: translate(-30px, 0) rotate(-20deg); }
+  86% { transform: translate(0, -10px) rotate(-8deg); }
+  90% { transform: translate(-30px, 0) rotate(-20deg); }
+  96% { transform: translate(0, -10px) rotate(-8deg); }
+  100% { transform: translate(-30px, 0) rotate(-20deg); }
+}
+
+@keyframes wiggle-back-forth {
+  /* Rocking */
+  0% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  5% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  10% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  15% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  20% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  25% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  30% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  35% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  40% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  45% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  50% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  55% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  /* Crouch */
+  58% { transform: skewY(-5deg) skewX(-5deg) scaleY(0.8) scaleX(1); }
+  /* Jump */
+  63% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  /* Land */
+  64% { transform: skewY(2deg) skewX(-1deg) scaleY(0.8) scaleX(1.02); }
+  /* Rage */
+  68% { transform: skewY(2deg) skewX(0deg) scaleY(0.8) scaleX(1.02); }
+  68.8% { transform: skewY(2deg) skewX(0deg) scaleY(0.8) scaleX(1.02); }
+  /* Rocking */
+  70% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  75% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  80% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  85% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  90% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+  95% { transform: skewY(-1deg) skewX(-1deg) scaleY(1.04) scaleX(1.02); }
+  100% { transform: skewY(0) skewX(0) scaleY(1) scaleX(1); }
+}
+
+@keyframes move-eye-right {
+  /* Resting: transform: translate(75px, 85px) rotate(-7deg); */
+  /* Rocking */
+  0% { transform: translate(76px, 85px) rotate(-7deg); }
+  6% { transform: translate(77px, 78px) rotate(-8deg); }
+  10% { transform: translate(76px, 85px) rotate(-7deg); }
+  16% { transform: translate(77px, 78px) rotate(-8deg); }
+  20% { transform: translate(76px, 85px) rotate(-7deg); }
+  26% { transform: translate(77px, 78px) rotate(-8deg); }
+  30% { transform: translate(76px, 85px) rotate(-7deg); }
+  36% { transform: translate(77px, 78px) rotate(-8deg); }
+  40% { transform: translate(76px, 85px) rotate(-7deg); }
+  46% { transform: translate(77px, 78px) rotate(-8deg); }
+  50% { transform: translate(76px, 85px) rotate(-7deg); }
+  56% { transform: translate(77px, 78px) rotate(-8deg); }
+  /* Crouch */
+  58% { transform: translate(73px, 78px) rotate(-17deg); }
+  /* Jump */
+  59% { transform: translate(77px, 78px) rotate(-7deg); }
+  /* Land */
+  64% { transform: translate(77px, 78px) rotate(-8deg); }
+  /* Rage */
+  65.6% { transform: translate(67px, 78px) rotate(-14deg); }
+  65.8% { transform: translate(77px, 78px) rotate(-16deg); }
+  66% { transform: translate(67px, 78px) rotate(-17deg); }
+  66.2% { transform: translate(77px, 78px) rotate(-17deg); }
+  66.6% { transform: translate(67px, 78px) rotate(-17deg); }
+  66.8% { transform: translate(77px, 78px) rotate(-17deg); }
+  67% { transform: translate(67px, 78px) rotate(-17deg); }
+  67.2% { transform: translate(77px, 78px) rotate(-17deg); }
+  67.6% { transform: translate(67px, 78px) rotate(-17deg); }
+  67.8% { transform: translate(77px, 78px) rotate(-17deg); }
+  68% { transform: translate(67px, 78px) rotate(-17deg); }
+  68.2% { transform: translate(77px, 78px) rotate(-17deg); }
+  68.6% { transform: translate(67px, 78px) rotate(-17deg); }
+  68.8% { transform: translate(77px, 78px) rotate(-17deg); }
+  /* Rocking */
+  70% { transform: translate(76px, 85px) rotate(-7deg); }
+  76% { transform: translate(77px, 78px) rotate(-8deg); }
+  80% { transform: translate(76px, 85px) rotate(-7deg); }
+  86% { transform: translate(77px, 78px) rotate(-8deg); }
+  90% { transform: translate(76px, 85px) rotate(-7deg); }
+  96% { transform: translate(77px, 78px) rotate(-8deg); }
+  100% { transform: translate(76px, 85px) rotate(-7deg); }
+}
+
+@keyframes move-eye-left {
+  /* Resting: transform: translate(6px, 96px) rotate(10deg); */
+  0% { transform: translate(6px, 95px) rotate(10deg); }
+  6% { transform: translate(7px, 89px) rotate(9deg); }
+  10% { transform: translate(6px, 96px) rotate(10deg); }
+  16% { transform: translate(7px, 89px) rotate(9deg); }
+  20% { transform: translate(6px, 96px) rotate(10deg); }
+  26% { transform: translate(7px, 89px) rotate(9deg); }
+  30% { transform: translate(6px, 96px) rotate(10deg); }
+  36% { transform: translate(7px, 89px) rotate(9deg); }
+  40% { transform: translate(6px, 96px) rotate(10deg); }
+  46% { transform: translate(7px, 89px) rotate(9deg); }
+  50% { transform: translate(6px, 96px) rotate(10deg); }
+  56% { transform: translate(7px, 89px) rotate(9deg); }
+  /* Crouch */
+  58% { transform: translate(10px, 89px) rotate(30deg); }
+  /* Jump */
+  59% { transform: translate(7px, 89px) rotate(9deg); }
+  /* Land */
+  64% { transform: translate(7px, 89px) rotate(9deg); }
+  /* Rage */
+  65.6% { transform: translate(10px, 89px) rotate(25deg); }
+  65.8% { transform: translate(20px, 89px) rotate(25deg); }
+  66% { transform: translate(10px, 89px) rotate(25deg); }
+  66.2% { transform: translate(20px, 89px) rotate(25deg); }
+  66.6% { transform: translate(10px, 89px) rotate(25deg); }
+  66.8% { transform: translate(20px, 89px) rotate(25deg); }
+  67% { transform: translate(10px, 89px) rotate(25deg); }
+  67.2% { transform: translate(20px, 89px) rotate(25deg); }
+  67.6% { transform: translate(10px, 89px) rotate(25deg); }
+  67.8% { transform: translate(20px, 89px) rotate(25deg); }
+  68% { transform: translate(10px, 89px) rotate(25deg); }
+  68.2% { transform: translate(20px, 89px) rotate(25deg); }
+  68.6% { transform: translate(10px, 89px) rotate(25deg); }
+  68.8% { transform: translate(20px, 89px) rotate(25deg); }
+  /* Rocking */
+  70% { transform: translate(6px, 96px) rotate(10deg); }
+  76% { transform: translate(7px, 89px) rotate(9deg); }
+  80% { transform: translate(6px, 96px) rotate(10deg); }
+  86% { transform: translate(7px, 89px) rotate(9deg); }
+  90% { transform: translate(6px, 96px) rotate(10deg); }
+  96% { transform: translate(7px, 89px) rotate(9deg); }
+  100% { transform: translate(6px, 96px) rotate(10deg); }
+}
