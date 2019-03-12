@@ -20,32 +20,32 @@ import {
 class DashboardPage extends React.Component {
     /*==================== State ====================*/
     constructor() {
-        super();
-        this.state = {
-            leftDrawerOpen: false,
-            rightDrawerOpen: false,
-            jsonData: [],
-            modalData:["",[],""],
-            modalShow: false,
-            bottomSheetShow: false,
-            bottomSheetData:["",[],""],
-            firebaseJsonData: [],
-            latestEntityKey: 0,
-            snackShow: '',
-            snackMessage: '',
-            snackActionText: '',
-            snackActionFunction: null,
-        };
+      super();
+      this.state = {
+        leftDrawerOpen: false,
+        rightDrawerOpen: false,
+        jsonData: [],
+        modalData:["",[],""],
+        modalShow: false,
+        bottomSheetShow: false,
+        bottomSheetData:["",[],""],
+        firebaseJsonData: [],
+        latestEntityKey: 0,
+        snackShow: '',
+        snackMessage: '',
+        snackActionText: '',
+        snackActionFunction: null,
+        snackActionParams: null
+      };
     }
 
-    /*==================== Doc Ready ====================*/
+    /*==================== Functions ====================*/
     componentDidMount = () => {
       this.firebaseGetData();
     }
 
     componentDidUpdate = () => { /*...*/ }
 
-    /*==================== Functions ====================*/
     firebaseGetData = () => {
         /*========== Firebase Application ==========*/
         const rootRef = firebase.database().ref().child('vrcms');
@@ -124,15 +124,16 @@ class DashboardPage extends React.Component {
       });
     }
 
-    toggleSnackbar = (snackMessage, snackActionText, snackActionFunction) => {
+    toggleSnackbar = (snackMessage, snackActionText, snackActionFunction, snackActionParams) => {
       if (this.state.snackShow === '' || this.state.snackShow === 'hide') {
         this.setState ({
           snackMessage: snackMessage,
           snackActionText: snackActionText,
-          snackActionFunction: snackActionFunction
+          snackActionFunction: snackActionFunction,
+          snackActionParams: snackActionParams
         });
 
-        // Set timeout for snackbar
+        // Start timeout for snackbar
         setTimeout(() => {
           if(this.state.snackShow === 'show') {
             this.toggleSnackbar();
@@ -143,6 +144,31 @@ class DashboardPage extends React.Component {
       } else {
         this.setState ({ snackShow: 'hide' });
       }
+    }
+
+    submitNewEntity = (e, latestEntityKey, inputName, inputShape, inputColour, inputPositionX, inputPositionY, inputPositionZ, inputScaleX, inputScaleY, inputScaleZ) => {
+      if (e) { e.preventDefault();}
+
+      const rootRef = firebase.database().ref();
+      const parentRef = rootRef.child('vrcms/vrEntities/' + this.props.userId);
+
+      parentRef.child(latestEntityKey).set({
+        meta: {
+          name: inputName
+        },
+        props: {
+          primitive: inputShape,
+          color: inputColour,
+          positionX: inputPositionX,
+          positionY: inputPositionY,
+          positionZ: inputPositionZ,
+          scaleX: inputScaleX,
+          scaleY: inputScaleY,
+          scaleZ: inputScaleZ
+        }
+      });
+
+      this.toggleSnackbar(inputName + ' created', 'Undo', '');
     }
 
     /*==================== Page ====================*/
@@ -188,6 +214,7 @@ class DashboardPage extends React.Component {
                 userId={this.props.userId}
                 latestEntityKey={this.state.latestEntityKey}
                 toggleSnackbar={this.toggleSnackbar}
+                submitNewEntity={this.submitNewEntity}
               />
 
               <Modal
@@ -203,17 +230,19 @@ class DashboardPage extends React.Component {
                 snackShow={this.state.snackShow}
                 snackMessage={this.state.snackMessage}
                 snackActionText={this.state.snackActionText}
-                snackActionFunction={this.snackActionFunction}
+                snackActionFunction={this.state.snackActionFunction}
+                snackActionParams={this.state.snackActionParams}
                 toggleSnackbar={this.toggleSnackbar}
               />
 
               <BottomSheet
-                jsonData={this.state.jsonData}
+                jsonData={this.state.firebaseJsonData}
                 bottomSheetShow={this.state.bottomSheetShow}
                 bottomSheetData={this.state.bottomSheetData}
                 toggleBottomSheet={this.toggleBottomSheet}
                 userId={this.props.userId}
                 toggleSnackbar={this.toggleSnackbar}
+                submitNewEntity={this.submitNewEntity}
               />
 
               <AnimationTest />

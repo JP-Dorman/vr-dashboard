@@ -29,42 +29,29 @@ class RightDrawer extends React.Component {
     this.setState({[name]: value});
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-
-    const rootRef = firebase.database().ref();
-    const parentRef = rootRef.child('vrcms/vrEntities/' + this.props.userId);
-
-    parentRef.child(this.props.latestEntityKey).set({
-      meta: {
-        name: this.state.inputName
-      },
-      props: {
-        primitive: this.state.inputShape,
-        color: this.state.inputColour,
-        positionX: this.state.inputPositionX,
-        positionY: this.state.inputPositionY,
-        positionZ: this.state.inputPositionZ,
-        scaleX: this.state.inputScaleX,
-        scaleY: this.state.inputScaleY,
-        scaleZ: this.state.inputScaleZ
-      }
-    });
-    
-    this.props.toggleSnackbar(this.state.inputName + ' created', 'Undo', '');
-  }
-
 
   /*==================== Content ====================*/
   render() {
-    const openDrawer = this.props.open === true
-      ? "open"
-      : "closed";
+    const openDrawer = this.props.open === true ? "open" : "closed";
 
     return (<div id="rightDrawerContainer" className={openDrawer}>
       <button className="shade" onClick={this.props.toggleRightDrawer}></button>
       <div id="rightDrawer">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={
+          event => this.props.submitNewEntity(
+            event,
+            this.props.latestEntityKey,
+            this.state.inputName,
+            this.state.inputShape,
+            this.state.inputColour,
+            this.state.inputPositionX,
+            this.state.inputPositionY,
+            this.state.inputPositionZ,
+            this.state.inputScaleX,
+            this.state.inputScaleY,
+            this.state.inputScaleZ
+          )
+        }>
 
           {/* === Name === */}
           <label>
@@ -72,7 +59,7 @@ class RightDrawer extends React.Component {
             <input name="inputName" type="text" value={this.state.inputName} onChange={this.handleInputChange} placeholder="Enter name.."/>
           </label>
 
-          {/* === shape === */}
+          {/* === Shape === */}
           <label>
             <span>Shape:</span>
             <select name="inputShape" value={this.state.inputShape} onChange={this.handleInputChange}>
@@ -83,7 +70,7 @@ class RightDrawer extends React.Component {
             </select>
           </label>
 
-          {/* === Colour=== */}
+          {/* === Colour === */}
           <label>
             <span>Colour:</span>
             <select name="inputColour" value={this.state.inputColour} onChange={this.handleInputChange}>
