@@ -7,6 +7,7 @@ class Snackbar extends React.Component {
 
   /*==================== Functions ====================*/
   handleAction = (event) => {
+    this.props.snackActionFunction(...this.props.snackActionParams);
     this.props.toggleSnackbar('', '', null)
   }
 

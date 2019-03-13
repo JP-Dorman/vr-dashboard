@@ -26,9 +26,6 @@ app.listen(3001, function(){
 
 
 app.post("/postJson", function(request, response) {
-    console.log("MURRRR");
-    console.log(request);
-    console.log("VEEEEEEEEEE");
     console.log(request.body); //This prints the JSON document received (if it is a JSON document)
 
 
