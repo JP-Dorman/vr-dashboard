@@ -49,7 +49,8 @@ class RightDrawer extends React.Component {
             this.state.inputPositionZ,
             this.state.inputScaleX,
             this.state.inputScaleY,
-            this.state.inputScaleZ
+            this.state.inputScaleZ,
+            true
           )
         }>
 

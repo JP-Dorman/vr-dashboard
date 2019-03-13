@@ -47,47 +47,47 @@ class DashboardPage extends React.Component {
     componentDidUpdate = () => { /*...*/ }
 
     firebaseGetData = () => {
-        /*========== Firebase Application ==========*/
-        const rootRef = firebase.database().ref().child('vrcms');
-        const vrEntitiesRef = rootRef.child('vrEntities');
-        const userRef = vrEntitiesRef.child(this.props.userId);
+      /*========== Firebase Application ==========*/
+      const rootRef = firebase.database().ref().child('vrcms');
+      const vrEntitiesRef = rootRef.child('vrEntities');
+      const userRef = vrEntitiesRef.child(this.props.userId);
 
-        if (userRef) {
-            userRef.on('value', snap => {
-                this.setState({ firebaseJsonData: [] });
+      if (userRef) {
+        userRef.on('value', snap => {
+          this.setState({ firebaseJsonData: [] });
 
-                // Create new entry for list
-                snap.forEach(entity => {
-                    const meta = entity.child('meta');
-                    const props = entity.child('props');
-                    const key = entity.key;
+          // Create new entry for list
+          snap.forEach(entity => {
+            const meta = entity.child('meta');
+            const props = entity.child('props');
+            const key = entity.key;
 
-                    const pushEntity = {
-                        "firebaseKey": key,
-                        "name":  meta.child('name').val(),
-                        "userId": this.state.userId,
-                        "primitive": props.child('primitive').val(),
-                        "color": props.child('color').val(),
-                        "positionX": props.child('positionX').val(),
-                        "positionY": props.child('positionY').val(),
-                        "positionZ": props.child('positionZ').val(),
-                        "scaleX": props.child('scaleX').val(),
-                        "scaleY": props.child('scaleY').val(),
-                        "scaleZ": props.child('scaleZ').val(),
-                    };
+            const pushEntity = {
+              "firebaseKey": key,
+              "name":  meta.child('name').val(),
+              "userId": this.state.userId,
+              "primitive": props.child('primitive').val(),
+              "color": props.child('color').val(),
+              "positionX": props.child('positionX').val(),
+              "positionY": props.child('positionY').val(),
+              "positionZ": props.child('positionZ').val(),
+              "scaleX": props.child('scaleX').val(),
+              "scaleY": props.child('scaleY').val(),
+              "scaleZ": props.child('scaleZ').val(),
+            };
 
-                    // Push new item to firebaseJsonData array for populating list
-                    this.setState(prevState => ({
-                        firebaseJsonData: [...prevState.firebaseJsonData, pushEntity]
-                    }));
+            // Push new item to firebaseJsonData array for populating list
+            this.setState(prevState => ({
+              firebaseJsonData: [...prevState.firebaseJsonData, pushEntity]
+            }));
 
-                    // Set new entity id to one above current highest id
-                    if (key >= this.state.latestEntityKey) {
-                        this.setState({ latestEntityKey: parseInt(key, 10) + 1 })
-                    }
-                });
-            });
-        }
+            // Set new entity id to one above current highest id
+            if (key >= this.state.latestEntityKey) {
+              this.setState({ latestEntityKey: parseInt(key, 10) + 1 })
+            }
+          });
+        });
+      }
     }
 
     toggleRightDrawer = () => {
@@ -146,7 +146,7 @@ class DashboardPage extends React.Component {
       }
     }
 
-    submitNewEntity = (e, latestEntityKey, inputName, inputShape, inputColour, inputPositionX, inputPositionY, inputPositionZ, inputScaleX, inputScaleY, inputScaleZ) => {
+    submitNewEntity = (e, latestEntityKey, inputName, inputShape, inputColour, inputPositionX, inputPositionY, inputPositionZ, inputScaleX, inputScaleY, inputScaleZ, undoBool) => {
       if (e) { e.preventDefault();}
 
       const rootRef = firebase.database().ref();
@@ -168,7 +168,78 @@ class DashboardPage extends React.Component {
         }
       });
 
-      this.toggleSnackbar(inputName + ' created', 'Undo', '');
+      // If you want to trigger an undo, show snackbar and pass undo function as param
+      if (undoBool) {
+        this.toggleSnackbar(
+          inputName + ' created',
+          'Undo',
+          this.deleteEntity,
+          [
+            this.props.userId,
+            latestEntityKey,
+            false
+          ]
+        );
+      }
+    }
+
+    deleteEntity = (userId, itemId, undoBool) => {
+      const rootRef = firebase.database().ref().child('vrcms');
+      const vrEntitiesRef = rootRef.child('vrEntities');
+      const userRef = vrEntitiesRef.child(userId);
+      const itemRef = userRef.child(itemId);
+      const itemName = this.state.bottomSheetData[0];
+      let getData = {}
+
+      // Grab values of item to delete from database
+      // Doesn't make a db request as it uses the global listener's cache
+      itemRef.on('value', snap => {
+        const metaRef = snap.child('meta');
+        const propsRef = snap.child('props');
+        getData = {
+          entityKey: this.state.bottomSheetData[2][0],
+          name: metaRef.child('name').val(),
+          shape: propsRef.child('primitive').val(),
+          color: propsRef.child('color').val(),
+          posX: propsRef.child('positionX').val(),
+          posY: propsRef.child('positionY').val(),
+          posZ: propsRef.child('positionZ').val(),
+          scaleX: propsRef.child('scaleX').val(),
+          scaleY: propsRef.child('scaleY').val(),
+          scaleZ: propsRef.child('scaleZ').val(),
+        }
+      });
+      // Save data of deleted item locally in a const to stop firebase updating with null values
+      const saveData = getData;
+
+      // Remove item from database and hide delete menu
+      itemRef.remove();
+      if (this.state.bottomSheetShow === true) {
+        this.toggleBottomSheet( '', [], '');
+      }
+
+      // If you want to trigger an undo, show snackbar and pass undo function as param
+      if (undoBool) {
+        this.toggleSnackbar(
+          itemName + ' deleted',
+          'Undo',
+          this.submitNewEntity,
+          [
+            null,
+            saveData.entityKey,
+            saveData.name,
+            saveData.shape,
+            saveData.color,
+            saveData.posX,
+            saveData.posY,
+            saveData.posZ,
+            saveData.scaleX,
+            saveData.scaleY,
+            saveData.scaleZ,
+            false
+          ]
+        );
+      }
     }
 
     /*==================== Page ====================*/
@@ -243,6 +314,7 @@ class DashboardPage extends React.Component {
                 userId={this.props.userId}
                 toggleSnackbar={this.toggleSnackbar}
                 submitNewEntity={this.submitNewEntity}
+                deleteEntity={this.deleteEntity}
               />
 
               <AnimationTest />
