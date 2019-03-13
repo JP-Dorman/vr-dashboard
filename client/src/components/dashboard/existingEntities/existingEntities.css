@@ -27,7 +27,12 @@ button.entity-button:hover {
     opacity: 0.05;
 }
 
-/*==================== Row Content ====================*/
+.entity .dataLabel {
+  display: none;
+}
+
+
+/*==================== Faux table CSS ====================*/
 .entity > div {
     margin: 5px 0;
 }
@@ -88,5 +93,9 @@ button.entity-button:hover {
 @media (min-width: 768px) {
     .entity > .name {
         margin: 10px 40px;
+    }
+
+    .entity .dataLabel {
+      display: initial;
     }
 }
