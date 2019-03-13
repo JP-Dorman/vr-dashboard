@@ -197,7 +197,9 @@ class RightDrawer extends React.Component {
           </label>
 
           {/* === Submit === */}
-          <input className="btn" type="submit" value="Submit"/>
+          <div className="btn">
+            <input type="submit" value="Submit"/>
+          </div>
         </form>
       </div>
     </div>);
