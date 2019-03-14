@@ -48,9 +48,6 @@ button {
 }
 
 #header-bar button {
-  color: #fff;
-  margin-right:20px;
-  padding: 0;
   cursor: pointer;
 }
 
@@ -69,6 +66,10 @@ button {
   height: 100%;
   display: flex;
   align-items: center;
+}
+
+#header-bar #header-bar-right .buttonContainer {
+  margin: 0;
 }
 
 /*========== Content ==========*/

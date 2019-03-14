@@ -1,5 +1,5 @@
 import React from 'react';
-import './dashboard.css'
+import './entitiesListPage.css'
 import '../../zIndex.css'
 import LeftDrawer from '../../components/leftDrawer/leftDrawer.js'
 import RightDrawer from '../../components/rightDrawer/rightDrawer.js'
@@ -14,7 +14,8 @@ import {
   Route,
   Link,
   Switch
-} from 'react-router-dom'
+} from 'react-router-dom';
+import Button from '../../components/formElements/button/button.js';
 
 
 class DashboardPage extends React.Component {
@@ -253,7 +254,12 @@ class DashboardPage extends React.Component {
               </div>
 
               <div id="header-bar-right">
-                <Link to={'/scene'} className="btn btn-negative">View Scene</Link>
+                <Button
+                  className='buttonContainer flatButton secondary'
+                  type='button'
+                  value='View Scene'
+                  link="/scene"
+                />
               </div>
             </div>
 

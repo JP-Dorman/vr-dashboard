@@ -1,0 +1,157 @@
+/* ========== Core ==========*/
+/* Submit button */
+.buttonContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 20px;
+}
+
+.buttonContainer a {
+  text-decoration: none;
+}
+
+.buttonContainer input {
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Button ripple */
+.buttonContainer .rippleContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.buttonContainer .rippleContainer::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  transform: scale(500);
+  background: #212121;
+  opacity: 0;
+  transition: transform 0.7s, opacity 0.7s;
+  z-index: 1;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  pointer-events: none;
+}
+
+.buttonContainer:active .rippleContainer::before {
+  transform: scale(0);
+  opacity: 0.3;
+  transition: transform 0s, opacity 0s;
+}
+
+
+/*==================== Material Buttons ====================*/
+/* Button hover shadow */
+.buttonContainer.materialButton .shadowContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.buttonContainer.materialButton .shadowContainer::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  -webkit-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.25);
+  border-radius: 4px;
+  opacity: 1;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.buttonContainer.materialButton .shadowContainer::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  -webkit-box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.35);
+  box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.35);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.buttonContainer.materialButton:hover .shadowContainer::before {
+  opacity: 0;
+}
+
+.buttonContainer.materialButton:hover .shadowContainer::after {
+  opacity: 1;
+}
+
+/* ========== Primary ==========*/
+.buttonContainer.materialButton.primary input {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+/* ========== Secondary ==========*/
+.buttonContainer.materialButton.secondary input {
+  background-color: #fff;
+  color: #2196f3;
+}
+
+
+/*==================== Flat Buttons ====================*/
+/* ========== Flat Primary ==========*/
+.buttonContainer.flatButton.primary input {
+  background-color: #fff;
+  color: #2196f3;
+  transition: background-color 0.3s;
+}
+
+.buttonContainer.flatButton.primary:hover input {
+  background-color: #EEEEEE;
+}
+
+/* ========== Flat Secondary ==========*/
+.buttonContainer.flatButton.secondary input {
+  background: none;
+  background-color: none;
+  color: #fff;
+  border: 2px solid #fff;
+  transition: background-color 0.3s;
+}
+
+.buttonContainer.flatButton.secondary:hover input {
+  background: rgb(238,238,238, 0.25);
+  background-color: rgb(238,238,238, 0.25);
+}
+
+.buttonContainer.flatButton.secondary .rippleContainer::before {
+  background: #fff;
+}
