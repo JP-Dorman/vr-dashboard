@@ -1,13 +1,13 @@
 import React from 'react';
 import './dashboard.css'
-import './zIndex.css'
-import LeftDrawer from './leftDrawer/leftDrawer.js'
-import RightDrawer from './rightDrawer/rightDrawer.js'
-import ExistingEntities from './existingEntities/existingEntities.js'
-import Modal from './modal/modal.js'
-import Snackbar from './snackbar/snackbar.js'
-import BottomSheet from './bottomSheet/bottomSheet.js'
-import AnimationTest from './animationTest/animationTest.js'
+import '../../zIndex.css'
+import LeftDrawer from '../../components/leftDrawer/leftDrawer.js'
+import RightDrawer from '../../components/rightDrawer/rightDrawer.js'
+import ExistingEntities from '../../components/existingEntities/existingEntities.js'
+import Modal from '../../components/modal/modal.js'
+import Snackbar from '../../components/snackbar/snackbar.js'
+import BottomSheet from '../../components/bottomSheet/bottomSheet.js'
+import AnimationTest from '../../components/animationTest/animationTest.js'
 import * as firebase from 'firebase';
 import {
   BrowserRouter as Router,

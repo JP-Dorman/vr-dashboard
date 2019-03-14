@@ -6,11 +6,11 @@ import {
   Route,
   Link,
   Switch
-} from 'react-router-dom'
-import DashboardPage from './components/dashboard/dashboard.js'
-import VrScenePage from './components/vrScene/vrScene.js'
-import LoginPage from './components/login/login.js'
+} from 'react-router-dom';
 import * as firebase from 'firebase';
+import LoginPage from './dashboard/pages/loginPage/loginPage.js';
+import EntitiesListPage from './dashboard/pages/entitiesListPage/entitiesListPage.js';
+import VrScenePage from './vrScene/vrScene.js';
 
 
 /*==================== Firebase Setup ====================*/
@@ -110,7 +110,7 @@ class App extends React.Component {
                     />
                     <Route path="/"
                         render={(routeProps) => (
-                            <DashboardPage {...routeProps} userId={this.state.userId} />
+                            <EntitiesListPage {...routeProps} userId={this.state.userId} />
                         )}
                     />
                 </Switch>

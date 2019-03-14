@@ -1,5 +1,5 @@
 import React from 'react';
-import './login.css'
+import './loginPage.css'
 
 
 class DashboardPage extends React.Component {
