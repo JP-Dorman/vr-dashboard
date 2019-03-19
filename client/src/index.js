@@ -66,6 +66,9 @@ class App extends React.Component {
         const password = document.getElementsByName("inputPassword")[0].value;
         const auth = firebase.auth();
 
+        // Make sure snackbar animation doesn't fire by accident
+        this.setState({ snackShow: '' });
+
         // Sign in
         const loginPromise = auth.signInWithEmailAndPassword(email, password);
 
@@ -78,17 +81,20 @@ class App extends React.Component {
       const password = document.getElementsByName("inputPassword")[0].value;
       const auth = firebase.auth();
 
+      // Make sure snackbar animation doesn't fire by accident
+      this.setState({ snackShow: '' });
+
       // Sign in
       const loginPromise = auth.createUserWithEmailAndPassword(email, password);
 
       // Listen for callback errors
-      loginPromise
-        .then(user => console.log(user))
-        .catch(e => console.log(e.message));
+      loginPromise.catch((e) => this.toggleSnackbar(e.message));
     }
 
     clickLogout = () => {
-        firebase.auth().signOut();
+      // Make sure snackbar animation doesn't fire by accident
+      this.setState({ snackShow: '' });
+      firebase.auth().signOut();
     }
 
     handleInputChange = (event) => {
