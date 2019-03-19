@@ -98,6 +98,14 @@ class DashboardPage extends React.Component {
           className=''
           cardContent={cardContent}
         />
+        <Snackbar
+          snackShow={this.props.snackShow}
+          snackMessage={this.props.snackMessage}
+          snackActionText={this.props.snackActionText}
+          snackActionFunction={this.props.snackActionFunction}
+          snackActionParams={this.props.snackActionParams}
+          toggleSnackbar={this.props.toggleSnackbar}
+        />
         {/*<div id="login-card" className={"card " + logInOutClass}>
           <p>
             Please enter a dummy email address and a fake password at least 6 characters long.

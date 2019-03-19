@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 import LoginPage from './dashboard/pages/loginPage/loginPage.js';
 import EntitiesListPage from './dashboard/pages/entitiesListPage/entitiesListPage.js';
 import VrScenePage from './vrScene/vrScene.js';
+import Snackbar from './dashboard/components/snackbar/snackbar.js';
 
 
 /*==================== Firebase Setup ====================*/
@@ -34,7 +35,12 @@ class App extends React.Component {
             loggedIn: false,
             inputEmail: "",
             inputPassword: "",
-            userId: ""
+            userId: "",
+            snackShow: '',
+            snackMessage: '',
+            snackActionText: '',
+            snackActionFunction: null,
+            snackActionParams: null
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -64,7 +70,7 @@ class App extends React.Component {
         const loginPromise = auth.signInWithEmailAndPassword(email, password);
 
         // Listen for callback errors
-        loginPromise.catch(e => console.log(e.message));
+        loginPromise.catch((e) => this.toggleSnackbar(e.message));
     }
 
     clickSignup = () => {
@@ -95,45 +101,85 @@ class App extends React.Component {
       });
     }
 
+    toggleSnackbar = (snackMessage, snackActionText, snackActionFunction, snackActionParams) => {
+      if (this.state.snackShow === '' || this.state.snackShow === 'hide') {
+        this.setState ({
+          snackMessage: snackMessage,
+          snackActionText: snackActionText,
+          snackActionFunction: snackActionFunction,
+          snackActionParams: snackActionParams
+        });
+
+        // Start timeout for snackbar
+        setTimeout(() => {
+          if(this.state.snackShow === 'show') {
+            this.toggleSnackbar();
+          }
+        }, 3500);
+
+        this.setState ({ snackShow: 'show' });
+      } else {
+        this.setState ({ snackShow: 'hide' });
+      }
+    }
+
     /*==================== Route Configurations ====================*/
     ConfigureRoutes = () => {
-        const loggedIn = this.state.loggedIn;
+      const loggedIn = this.state.loggedIn;
 
-        if (loggedIn) {
-            return (
-                <Switch>
-                    <Route path="/scene"
-                        render={(routeProps) => (
-                            <VrScenePage {...routeProps} userId={this.state.userId} />
-                        )}
-                    />
-                    <Route path="/"
-                        render={(routeProps) => (
-                            <EntitiesListPage {...routeProps} userId={this.state.userId} />
-                        )}
-                    />
-                </Switch>
-            );
-        } else {
-            return (
-                <Switch>
-                    <Route path="/"
-                        render={(routeProps) => (
-                            <LoginPage
-                                {...routeProps}
-                                loggedIn={ this.state.loggedIn }
-                                inputEmail={this.state.inputEmail}
-                                inputPassword={this.state.inputPassword}
-                                handleInputChange={this.handleInputChange}
-                                clickLogin={ this.clickLogin }
-                                clickSignup={ this.clickSignup }
-                                clickLogout={ this.clickLogout }
-                            />
-                         )}
-                    />
-                </Switch>
-            );
-        }
+      if (loggedIn) {
+        return (
+          <Switch>
+            <Route path="/scene"
+              render={(routeProps) => (
+                <VrScenePage
+                  {...routeProps}
+                  userId={this.state.userId}
+                />
+              )}
+            />
+            <Route path="/"
+              render={(routeProps) => (
+                <EntitiesListPage
+                  {...routeProps}
+                  userId={this.state.userId}
+                  snackShow={this.state.snackShow}
+                  snackMessage={this.state.snackMessage}
+                  snackActionText={this.state.snackActionText}
+                  snackActionFunction={this.state.snackActionFunction}
+                  snackActionParams={this.state.snackActionParams}
+                  toggleSnackbar={this.toggleSnackbar}
+                />
+              )}
+            />
+          </Switch>
+        );
+      } else {
+        return (
+          <Switch>
+              <Route path="/"
+                render={(routeProps) => (
+                  <LoginPage
+                    {...routeProps}
+                    loggedIn={ this.state.loggedIn }
+                    inputEmail={this.state.inputEmail}
+                    inputPassword={this.state.inputPassword}
+                    handleInputChange={this.handleInputChange}
+                    clickLogin={ this.clickLogin }
+                    clickSignup={ this.clickSignup }
+                    clickLogout={ this.clickLogout }
+                    snackShow={this.state.snackShow}
+                    snackMessage={this.state.snackMessage}
+                    snackActionText={this.state.snackActionText}
+                    snackActionFunction={this.state.snackActionFunction}
+                    snackActionParams={this.state.snackActionParams}
+                    toggleSnackbar={this.toggleSnackbar}
+                  />
+                 )}
+              />
+          </Switch>
+        );
+      }
     }
 
     render() {

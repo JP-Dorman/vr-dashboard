@@ -32,11 +32,6 @@ class DashboardPage extends React.Component {
         bottomSheetData:["",[],""],
         firebaseJsonData: [],
         latestEntityKey: 0,
-        snackShow: '',
-        snackMessage: '',
-        snackActionText: '',
-        snackActionFunction: null,
-        snackActionParams: null
       };
     }
 
@@ -125,34 +120,13 @@ class DashboardPage extends React.Component {
       });
     }
 
-    toggleSnackbar = (snackMessage, snackActionText, snackActionFunction, snackActionParams) => {
-      if (this.state.snackShow === '' || this.state.snackShow === 'hide') {
-        this.setState ({
-          snackMessage: snackMessage,
-          snackActionText: snackActionText,
-          snackActionFunction: snackActionFunction,
-          snackActionParams: snackActionParams
-        });
-
-        // Start timeout for snackbar
-        setTimeout(() => {
-          if(this.state.snackShow === 'show') {
-            this.toggleSnackbar();
-          }
-        }, 3500);
-
-        this.setState ({ snackShow: 'show' });
-      } else {
-        this.setState ({ snackShow: 'hide' });
-      }
-    }
-
     submitNewEntity = (e, latestEntityKey, inputName, inputShape, inputColour, inputPositionX, inputPositionY, inputPositionZ, inputScaleX, inputScaleY, inputScaleZ, undoBool) => {
       if (e) { e.preventDefault();}
 
       const rootRef = firebase.database().ref();
       const parentRef = rootRef.child('vrcms/vrEntities/' + this.props.userId);
 
+      // Create the database entry
       parentRef.child(latestEntityKey).set({
         meta: {
           name: inputName
@@ -171,7 +145,7 @@ class DashboardPage extends React.Component {
 
       // If you want to trigger an undo, show snackbar and pass undo function as param
       if (undoBool) {
-        this.toggleSnackbar(
+        this.props.toggleSnackbar(
           inputName + ' created',
           'Undo',
           this.deleteEntity,
@@ -221,7 +195,7 @@ class DashboardPage extends React.Component {
 
       // If you want to trigger an undo, show snackbar and pass undo function as param
       if (undoBool) {
-        this.toggleSnackbar(
+        this.props.toggleSnackbar(
           itemName + ' deleted',
           'Undo',
           this.submitNewEntity,
@@ -290,7 +264,7 @@ class DashboardPage extends React.Component {
                 jsonData={this.state.jsonData}
                 userId={this.props.userId}
                 latestEntityKey={this.state.latestEntityKey}
-                toggleSnackbar={this.toggleSnackbar}
+                toggleSnackbar={this.props.toggleSnackbar}
                 submitNewEntity={this.submitNewEntity}
               />
 
@@ -300,16 +274,16 @@ class DashboardPage extends React.Component {
                 modalData={this.state.modalData}
                 toggleModal={this.toggleModal}
                 userId={this.props.userId}
-                toggleSnackbar={this.toggleSnackbar}
+                toggleSnackbar={this.props.toggleSnackbar}
               />
 
               <Snackbar
-                snackShow={this.state.snackShow}
-                snackMessage={this.state.snackMessage}
-                snackActionText={this.state.snackActionText}
-                snackActionFunction={this.state.snackActionFunction}
-                snackActionParams={this.state.snackActionParams}
-                toggleSnackbar={this.toggleSnackbar}
+                snackShow={this.props.snackShow}
+                snackMessage={this.props.snackMessage}
+                snackActionText={this.props.snackActionText}
+                snackActionFunction={this.props.snackActionFunction}
+                snackActionParams={this.props.snackActionParams}
+                toggleSnackbar={this.props.toggleSnackbar}
               />
 
               <BottomSheet
@@ -318,7 +292,7 @@ class DashboardPage extends React.Component {
                 bottomSheetData={this.state.bottomSheetData}
                 toggleBottomSheet={this.toggleBottomSheet}
                 userId={this.props.userId}
-                toggleSnackbar={this.toggleSnackbar}
+                toggleSnackbar={this.props.toggleSnackbar}
                 submitNewEntity={this.submitNewEntity}
                 deleteEntity={this.deleteEntity}
               />
