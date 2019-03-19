@@ -33,6 +33,7 @@ class App extends React.Component {
         super();
         this.state = {
             loggedIn: false,
+            userEmail: '',
             inputEmail: "",
             inputPassword: "",
             userId: "",
@@ -52,7 +53,8 @@ class App extends React.Component {
             if (firebaseUser) {
                 this.setState ({
                     loggedIn: true,
-                    userId: firebaseUser.uid
+                    userId: firebaseUser.uid,
+                    userEmail: firebaseUser.email
                 })
             } else {
                 this.setState ({ loggedIn: false })
@@ -156,6 +158,7 @@ class App extends React.Component {
                   snackActionParams={this.state.snackActionParams}
                   toggleSnackbar={this.toggleSnackbar}
                   clickLogout={this.clickLogout}
+                  userEmail={this.state.userEmail}
                 />
               )}
             />

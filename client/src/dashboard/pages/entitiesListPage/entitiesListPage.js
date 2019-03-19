@@ -258,6 +258,7 @@ class DashboardPage extends React.Component {
                 open={this.state.leftDrawerOpen}
                 toggleLeftDrawer={this.toggleLeftDrawer}
                 clickLogout={this.props.clickLogout}
+                userEmail={this.props.userEmail}
               />
 
               <RightDrawer open={this.state.rightDrawerOpen}

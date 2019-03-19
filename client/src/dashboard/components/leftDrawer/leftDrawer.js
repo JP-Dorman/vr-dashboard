@@ -29,7 +29,7 @@ class RightDrawer extends React.Component {
                             <i className="material-icons">person</i>
                         </div>
                         <div className="user-email">
-                            thisguy@thisgal.net
+                          { this.props.userEmail }
                         </div>
                     </div>
 
