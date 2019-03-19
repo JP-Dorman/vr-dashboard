@@ -155,6 +155,7 @@ class App extends React.Component {
                   snackActionFunction={this.state.snackActionFunction}
                   snackActionParams={this.state.snackActionParams}
                   toggleSnackbar={this.toggleSnackbar}
+                  clickLogout={this.clickLogout}
                 />
               )}
             />

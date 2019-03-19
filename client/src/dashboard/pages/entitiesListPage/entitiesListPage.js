@@ -254,8 +254,10 @@ class DashboardPage extends React.Component {
                 <i className="material-icons">add</i>
               </button>
 
-              <LeftDrawer open={this.state.leftDrawerOpen}
+              <LeftDrawer
+                open={this.state.leftDrawerOpen}
                 toggleLeftDrawer={this.toggleLeftDrawer}
+                clickLogout={this.props.clickLogout}
               />
 
               <RightDrawer open={this.state.rightDrawerOpen}

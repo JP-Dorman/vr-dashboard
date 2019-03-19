@@ -11,7 +11,7 @@ class RightDrawer extends React.Component {
                {text: "Coming Soon", primary: false, faded: true},
                {text: "Coming Soon", primary: false, faded: true},
                {text: "Coming Soon", primary: false, faded: true},
-               {text: "Log Out", primary: true, faded: false, func: "clickLogout"}
+               {text: "Log Out", primary: true, faded: false, func: this.props.clickLogout}
            ]
        };
      }

@@ -11,20 +11,15 @@ class MenuItem extends React.Component {
        };
      }
 
-     clickLogout = () => {
-         firebase.auth().signOut();
-     }
-
     render() {
         const primaryClass = this.props.isPrimaryItem === true ? "menu-item-primary" :  "";
         const fadedClass = this.props.isFadedItem === true ? "menu-item-faded" :  "";
-        const func = this.props.func === "clickLogout" ? this.clickLogout : undefined;
 
 
         return (
             <button
                 className={"menu-item " + primaryClass +" "+ fadedClass}
-                onClick={func}>
+                onClick={this.props.func}>
                 {this.props.text}
             </button>
         );
