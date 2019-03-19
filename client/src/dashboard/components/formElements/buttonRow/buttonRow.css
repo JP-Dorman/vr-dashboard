@@ -1,0 +1,13 @@
+.buttonRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.buttonRow .buttonContainer {
+  width: auto;
+}
+
+.buttonRow .buttonContainer:not(:last-child) {
+  margin-right: 20px;
+}

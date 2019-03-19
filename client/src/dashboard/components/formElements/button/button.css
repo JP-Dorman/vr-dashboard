@@ -1,3 +1,15 @@
+/*
+*
+  Buttons are built upon a core style, using classes to select the  visual type.
+  The default assumption is your button is on a white background, the negative modifier is for buttons on a coloured background.
+
+  Types:
+    materialButton.primary, materialButton.secondary
+    flatButton.primary, flatButton.primaryNegative, flatButton.secondary,
+    textButton.primary, textButton.primaryNegative
+*
+*/
+
 /* ========== Core ==========*/
 /* Submit button */
 .buttonContainer {
@@ -13,11 +25,11 @@
 }
 
 .buttonContainer input {
-  border: none;
+  border: 2px solid transparent;
   border-radius: 4px;
   text-decoration: none;
-  height: 40px;
-  padding: 10px;
+  height: 42px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,7 +150,50 @@
   background-color: #EEEEEE;
 }
 
+/* ========== Flat Primary Negative ==========*/
+.buttonContainer.flatButton.primaryNegative input {
+  background-color: #fff;
+  color: #2196f3;
+  transition: background-color 0.3s;
+}
+
+.buttonContainer.flatButton.primaryNegative:hover input {
+  background-color: #EEEEEE;
+}
+
 /* ========== Flat Secondary ==========*/
+.buttonContainer.flatButton.secondary input {
+  background: none;
+  background-color: none;
+  color: #fff;
+  border: 2px solid #fff;
+  transition: background-color 0.3s;
+}
+
+.buttonContainer.flatButton.secondary:hover input {
+  background: rgb(238,238,238, 0.25);
+  background-color: rgb(238,238,238, 0.25);
+}
+
+.buttonContainer.flatButton.secondary .rippleContainer::before {
+  background: #fff;
+}
+
+
+/*==================== Text Buttons ====================*/
+/* ========== Text Primary ==========*/
+.buttonContainer.flatButton.primary input {
+  background-color: none;
+  color: #2196f3;
+  transition: background-color 0.3s;
+  border: 2px solid #E0E0E0;
+}
+
+.buttonContainer.flatButton.primary:hover input {
+  background-color: #EEEEEE;
+}
+
+/* ========== Text Secondary ==========*/
 .buttonContainer.flatButton.secondary input {
   background: none;
   background-color: none;

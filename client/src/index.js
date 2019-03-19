@@ -56,8 +56,8 @@ class App extends React.Component {
 
     /*==================== Login Functions ====================*/
     clickLogin = () => {
-        const email = document.getElementById("input-email").value;
-        const password = document.getElementById("input-password").value;
+        const email = document.getElementsByName("inputEmail")[0].value;
+        const password = document.getElementsByName("inputPassword")[0].value;
         const auth = firebase.auth();
 
         // Sign in
@@ -68,18 +68,17 @@ class App extends React.Component {
     }
 
     clickSignup = () => {
-        // TODO: validate email
-        const email = document.getElementById("input-email").value;
-        const password = document.getElementById("input-password").value;
-        const auth = firebase.auth();
+      const email = document.getElementsByName("inputEmail")[0].value;
+      const password = document.getElementsByName("inputPassword")[0].value;
+      const auth = firebase.auth();
 
-        // Sign in
-        const loginPromise = auth.createUserWithEmailAndPassword(email, password);
+      // Sign in
+      const loginPromise = auth.createUserWithEmailAndPassword(email, password);
 
-        // Listen for callback errors
-        loginPromise
-            .then(user => console.log(user))
-            .catch(e => console.log(e.message));
+      // Listen for callback errors
+      loginPromise
+        .then(user => console.log(user))
+        .catch(e => console.log(e.message));
     }
 
     clickLogout = () => {

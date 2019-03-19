@@ -28,6 +28,7 @@ class Button extends React.Component {
         <input
           type={this.props.type}
           value={this.props.value}
+          onClick={this.props.onClick}
         />
       </div>;
     }
